@@ -9,8 +9,8 @@
             console.log("ready");
             setInterval(function () {
                 console.log("set interval");
-                var d = new Date();
-                var t = d.toLocaleTimeString();
+                let d = new Date();
+                let t = d.toLocaleTimeString();
                 $("#child").replaceWith("<div id='child'>Child " + t + "</div>");
             }, 2000);
         });

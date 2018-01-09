@@ -18,7 +18,7 @@ public class SpinnersTest extends BaseTest {
 
     @Test
     public void test() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/java/com/khospodarysko/spinners.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/spinners.html");
 
         logger.info("{}", areSpinnersLoaded());
     }
