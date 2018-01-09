@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spinners Simple</title>
+    <style>
+        .spinner-small {
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        .spinner-large {
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            width: 100px;
+            height: 100px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        div {
+            display: inline-block;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const MAX_SPINNERS = 20;
+            const MIN_SLEEP = 2000;
+            const MAX_SLEEP = 10000;
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            var smallCount = getRandomInt(1, MAX_SPINNERS);
+            for (let i = 0; i < smallCount; i++) {
+                let locator = '#id-small-' + i;
+                let div = "<div class='spinner-small' id='id-small-" + i + "'></div>";
+                $("body").append(div);
+
+                setTimeout(
+                    function remove() {
+                        $(locator).removeClass("spinner-small");
+                    },
+                    getRandomInt(MIN_SLEEP, MAX_SLEEP)
+                );
+            }
+
+            var largeCount = getRandomInt(1, MAX_SPINNERS);
+            for (let i = 0; i < largeCount; i++) {
+                let locator = '#id-large-' + i;
+                let div = "<div class='spinner-large' id='id-large-" + i + "'></div>";
+                $("body").append(div);
+
+                setTimeout(
+                    function remove() {
+                        $(locator).removeClass("spinner-large");
+                    },
+                    getRandomInt(MIN_SLEEP, MAX_SLEEP)
+                );
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
