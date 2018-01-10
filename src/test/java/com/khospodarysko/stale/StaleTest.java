@@ -1,10 +1,9 @@
-package com.khospodarysko;
+package com.khospodarysko.stale;
 
 import static org.awaitility.Awaitility.await;
 
-import com.google.common.base.Joiner;
+import com.khospodarysko.BaseTest;
 
-import org.hamcrest.Matchers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -16,12 +15,10 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nullable;
-
 public class StaleTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(StaleTest.class);
 
-    // TODO: unsuccessful tests
+    // TODO: "child" in page object
 
     @Test
     public void testExpectedCondition() throws InterruptedException {
@@ -53,17 +50,19 @@ public class StaleTest extends BaseTest {
     }
 
     @Test
-    public void testExpectedConditionFailedCustomClassCondition() {
+    public void testExpectedConditionFailedCustomClassCondition1() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
-
-        class HasTimeSeparator implements ExpectedCondition<Boolean> {
-            public Boolean apply(WebDriver driver) {
-                return driver.findElement(By.id("child")).getText().contains(":");
-            }
-        }
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(new HasTimeSeparator());
+    }
+
+    @Test
+    public void testExpectedConditionFailedCustomClassCondition2() {
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+
+        WebDriverWait wait = new WebDriverWait(driver, 1);
+        wait.until(new HasTimeSeparator(":"));
     }
 
     @Test
@@ -99,9 +98,12 @@ public class StaleTest extends BaseTest {
     public void testAwaitility() throws InterruptedException {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
 
-        await("message text")
+        By child123 = By.id("child123");
+
+        await(child123 + " text to contain ':'")
             .atMost(5, TimeUnit.SECONDS)
-            .until(() -> driver.findElement(By.id("child")).getText().contains(":"));
+            .ignoreExceptions()
+            .until(() -> driver.findElement(child123).getText().contains(":"));
 
         for (int i = 0; i < 5; i++) {
             logger.info("{}", driver.findElement(By.id("child")).getText());
