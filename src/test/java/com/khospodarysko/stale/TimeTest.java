@@ -15,14 +15,14 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class StaleTest extends BaseTest {
-    private static final Logger logger = LoggerFactory.getLogger(StaleTest.class);
+public class TimeTest extends BaseTest {
+    private static final Logger logger = LoggerFactory.getLogger(TimeTest.class);
 
     // TODO: "child" in page object
 
     @Test
     public void testExpectedCondition() throws InterruptedException {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until((ExpectedCondition<Boolean>) driver -> driver.findElement(By.id("child")).getText().contains(":"));
@@ -35,7 +35,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testExpectedConditionFailed() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until((ExpectedCondition<Boolean>) driver -> driver.findElement(By.id("child")).getText().contains(":"));
@@ -43,7 +43,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testExpectedConditionFailedBuiltInCondition() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("child"), ":"));
@@ -51,7 +51,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition1() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(new HasTimeSeparator());
@@ -59,7 +59,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition2() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(new HasTimeSeparator(":"));
@@ -67,7 +67,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousCondition() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -79,7 +79,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousConditionWithMessage() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -96,7 +96,7 @@ public class StaleTest extends BaseTest {
 
     @Test
     public void testAwaitility() throws InterruptedException {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/stale.html");
+        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
 
         By child123 = By.id("child123");
 
