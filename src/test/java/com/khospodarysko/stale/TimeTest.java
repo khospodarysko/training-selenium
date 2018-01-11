@@ -1,113 +1,58 @@
 package com.khospodarysko.stale;
 
-import static org.awaitility.Awaitility.await;
-
 import com.khospodarysko.BaseTest;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
+/**
+ * Task:
+ * print different time 5 times that end on 0, like
+ * 11:36:40
+ * 11:36:50
+ * 11:37:00
+ * 11:37:10
+ * 11:37:20
+ *
+ * without Thread.sleep
+ */
 
 public class TimeTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(TimeTest.class);
 
-    // TODO: "child" in page object
-
     @Test
     public void testExpectedCondition() throws InterruptedException {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until((ExpectedCondition<Boolean>) driver -> driver.findElement(By.id("child")).getText().contains(":"));
-
-        for (int i = 0; i < 5; i++) {
-            logger.info("{}", driver.findElement(By.id("child")).getText());
-            Thread.sleep(3000);
-        }
     }
 
     @Test
     public void testExpectedConditionFailed() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 1);
-        wait.until((ExpectedCondition<Boolean>) driver -> driver.findElement(By.id("child")).getText().contains(":"));
     }
 
     @Test
     public void testExpectedConditionFailedBuiltInCondition() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 1);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("child"), ":"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition1() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 1);
-        wait.until(new HasTimeSeparator());
     }
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition2() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 1);
-        wait.until(new HasTimeSeparator(":"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousCondition() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 1);
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return driver.findElement(By.id("child")).getText().contains(":");
-            }
-        });
     }
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousConditionWithMessage() {
         driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        WebDriverWait wait = new WebDriverWait(driver, 1);
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return driver.findElement(By.id("child")).getText().contains(":");
-            }
-
-            @Override
-            public String toString() {
-                return "what was expected";
-            }
-        });
-    }
-
-    @Test
-    public void testAwaitility() throws InterruptedException {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
-
-        By child123 = By.id("child123");
-
-        await(child123 + " text to contain ':'")
-            .atMost(5, TimeUnit.SECONDS)
-            .ignoreExceptions()
-            .until(() -> driver.findElement(child123).getText().contains(":"));
-
-        for (int i = 0; i < 5; i++) {
-            logger.info("{}", driver.findElement(By.id("child")).getText());
-            Thread.sleep(3000);
-        }
     }
 }
