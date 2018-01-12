@@ -11,7 +11,7 @@ public class TimePageObjectTest extends BaseTest {
 
     @Test
     public void testExpectedCondition() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
 
         ChildPage page = new ChildPage(driver);
     }

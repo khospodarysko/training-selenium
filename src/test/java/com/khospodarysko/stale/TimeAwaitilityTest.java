@@ -11,6 +11,6 @@ public class TimeAwaitilityTest extends BaseTest {
 
     @Test
     public void testAwaitility() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 }

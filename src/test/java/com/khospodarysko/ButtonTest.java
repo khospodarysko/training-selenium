@@ -8,6 +8,6 @@ import org.testng.annotations.Test;
 public class ButtonTest extends BaseTest {
     @Test
     public void testExpectedCondition() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/button.html");
+        driver.get("file://" + absolutePath("button"));
     }
 }

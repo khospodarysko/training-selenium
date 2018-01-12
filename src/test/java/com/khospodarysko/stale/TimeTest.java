@@ -22,37 +22,37 @@ public class TimeTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(TimeTest.class);
 
     @Test
-    public void testExpectedCondition() throws InterruptedException {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+    public void testExpectedCondition() {
+        driver.get("file://" + absolutePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailed() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedBuiltInCondition() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition1() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition2() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousCondition() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousConditionWithMessage() {
-        driver.get("file:///Users/khospodarysko/projects/training-selenium/src/main/resources/time.html");
+        driver.get("file://" + absolutePath("time"));
     }
 }
