@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Drag Below</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -38,25 +40,37 @@
         .active {
             background-color: #4CAF50;
         }
+
+        button {
+            width: 150px;
+        }
+
+        div.mybtn {
+           padding: 5px;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function () {
             for (i = 1; i <= 200; i++) {
-                $("#content").append("<p>Some text " + i + "</p>");
+                $("#content").append("<div class='mybtn'><button id='id-"+i+"' type='button' class='btn btn-primary'>Button "+i+"</button></div>");
             }
+            $('.btn-primary').on('click', function (e) {
+                $('#clicked').text($(this).text());
+            })
         });
     </script>
 </head>
 <body>
 <ul>
     <li><a class="active" href="#home">Home</a></li>
-    <li><a href="#news">News</a></li>
+    <li><a href="#news" id="news">News</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#clicked" id="clicked"></a></li>
 </ul>
 
-<div id="content" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:auto;">
+<div id="content" style="padding:20px;margin-top:30px;height:auto;">
 </div>
 </body>
 </html>
