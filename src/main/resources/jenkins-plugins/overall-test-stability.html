@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overall Test Stability</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script>
+        $(document).ready(function () {
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            $.ajaxSetup({"async": false});
+
+            let fA, sA, pA;
+            $.getJSON("../../../../../../../../api/json?pretty=true&tree=builds[url]", function (job) {
+                let buildsPercentage = [];
+                job.builds.forEach(function (build) {
+                    $.getJSON(build.url + "api/json?pretty=true", function (info) {
+                        info.actions.forEach(function (action) {
+                            if (action.urlName === "testngreports") {
+                                buildsPercentage.push(
+                                    {
+                                        failCount: action.failCount / action.totalCount,
+                                        skipCount: action.skipCount / action.totalCount,
+                                        totalCount: (action.totalCount - action.failCount - action.skipCount)
+                                                    / action.totalCount
+                                    }
+                                );
+                            }
+                        });
+                    });
+                });
+                let count = buildsPercentage.length;
+                let fS = 0;
+                let sS = 0;
+                let pS = 0;
+                buildsPercentage.forEach(function (build) {
+                    fS = fS + build.failCount;
+                    sS = sS + build.skipCount;
+                    pS = pS + build.totalCount;
+                });
+
+                // fA = precisionRound((fS / count) * 100, 0);
+                // sA = precisionRound((sS / count) * 100, 0);
+                // pA = precisionRound((pS / count) * 100, 0);
+
+                fA = (fS / count) * 100;
+                sA = (sS / count) * 100;
+                pA = (pS / count) * 100;
+
+                console.log(pA);
+                console.log(fA);
+                console.log(sA);
+            });
+
+            function precisionRound(number, precision) {
+                var factor = Math.pow(10, precision);
+                return Math.round(number * factor) / factor;
+            }
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(
+                    [
+                        ['Task', 'Pass Percentage'],
+                        ['Pass', pA],
+                        ['Fail', fA],
+                        ['Skip', sA],
+                    ]
+                );
+
+                var options = {'title':'Overall Pass Percentage', 'width':600, 'height':600};
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="piechart"></div>
+</body>
+</html>
