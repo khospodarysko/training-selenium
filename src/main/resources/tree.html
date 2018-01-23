@@ -9,6 +9,7 @@
     <script type="text/javascript" src="zTree/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="zTree/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="zTree/js/jquery.ztree.exedit.js"></script>
+
     <SCRIPT type="text/javascript">
         var setting = {
             check: {
@@ -71,7 +72,6 @@
                 ruler.cursor = $("#cursor");
                 if (ruler.ruler) {
                     ruler.ruler.bind("mousedown", ruler.onMouseDown);
-
                 }
             },
             onMouseDown: function (e) {

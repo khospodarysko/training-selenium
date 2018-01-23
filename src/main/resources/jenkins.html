@@ -13,13 +13,14 @@
     <script type="text/javascript" src="zTree/js/jquery.ztree.exhide.js"></script>
     <SCRIPT LANGUAGE="JavaScript">
         var zTreeObj;
-        // zTree configuration information, refer to API documentation (setting details)
-        var setting = {};
+        var setting = {
+            view: {
+                expandSpeed: 2000
+            }
+        };
         $(document).ready(function () {
             $.getJSON("jenkins/data.json", function(json) {
-                // zTree data attributes, refer to the API documentation (treeNode data details)
-                var zNodes = json;
-                zTreeObj = $.fn.zTree.init($("#tree-1"), setting, zNodes);
+                zTreeObj = $.fn.zTree.init($("#tree-1"), setting, json);
             });
         });
     </SCRIPT>
