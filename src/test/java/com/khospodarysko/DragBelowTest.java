@@ -28,4 +28,17 @@ public class DragBelowTest extends BaseTest {
         Assertions.assertThat(driver.findElement(By.id("clicked")).getText())
             .isEqualTo("Button 200");
     }
+
+    @Test
+    public void testMultipleScrolls() {
+        driver.get("file://" + absoluteFilePath("drag-below"));
+
+        // scroll to 50
+        // click
+        // assert
+
+        // scroll to 10
+        // click
+        // assert
+    }
 }
