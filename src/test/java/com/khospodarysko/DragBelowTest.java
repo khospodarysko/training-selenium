@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class DragBelowTest extends BaseTest {
     @Test
     public void testBrokenScroll() {
-        driver.get("file://" + absolutePath("drag-below"));
+        driver.get("file://" + absoluteFilePath("drag-below"));
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",
             driver.findElement(By.xpath("//*[text()='Button 50']")));
@@ -22,7 +22,7 @@ public class DragBelowTest extends BaseTest {
 
     @Test
     public void testFixedScroll() {
-        driver.get("file://" + absolutePath("drag-below"));
+        driver.get("file://" + absoluteFilePath("drag-below"));
 
         scrollTo(By.id("news"), By.xpath("//*[text()='Button 200']"));
         driver.findElement(By.xpath("//*[text()='Button 200']")).click();

@@ -23,36 +23,36 @@ public class TimeTest extends BaseTest {
 
     @Test
     public void testExpectedCondition() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailed() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedBuiltInCondition() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition1() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomClassCondition2() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousCondition() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 
     @Test
     public void testExpectedConditionFailedCustomAnonymousConditionWithMessage() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 }

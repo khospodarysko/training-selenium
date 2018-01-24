@@ -11,7 +11,7 @@ public class TimePageObjectTest extends BaseTest {
 
     @Test
     public void testExpectedCondition() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
 
         ChildPage page = new ChildPage(driver);
     }

@@ -12,7 +12,7 @@ public class SpinnersTest extends BaseTest {
 
     @Test
     public void test() {
-        driver.get("file://" + absolutePath("spinners"));
+        driver.get("file://" + absoluteFilePath("spinners"));
 
         logger.info("{}", areSpinnersLoaded());
     }

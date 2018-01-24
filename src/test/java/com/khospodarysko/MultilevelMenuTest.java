@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class MultilevelMenuTest extends BaseTest {
     @Test
     public void test() {
-        driver.get("file://" + absolutePath("multilevel-menu"));
+        driver.get("file://" + absoluteFilePath("multilevel-menu"));
         System.out.println(1);
     }
 }

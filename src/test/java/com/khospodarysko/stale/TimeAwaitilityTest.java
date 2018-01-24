@@ -11,6 +11,6 @@ public class TimeAwaitilityTest extends BaseTest {
 
     @Test
     public void testAwaitility() {
-        driver.get("file://" + absolutePath("time"));
+        driver.get("file://" + absoluteFilePath("time"));
     }
 }

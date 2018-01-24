@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jenkins</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="zTree/css/demo.css" type="text/css">
+    <link rel="stylesheet" href="zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="zTree/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="zTree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="zTree/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="zTree/js/jquery.ztree.exedit.js"></script>
+    <script type="text/javascript" src="zTree/js/jquery.ztree.exhide.js"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+        var zTreeObj;
+        var setting = {
+            view: {
+                expandSpeed: 2000
+            }
+        };
+        $(document).ready(function () {
+            let json = [
+                {
+                    "name": "Suite",
+                    "icon": "jenkins/testok.gif",
+                    "children": [
+                        {
+                            "name": "com.clearslide.manage.emailPitch.RecommendedDeckInCreateLinkTest (76.711 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "verifyRecommendedDeckLimitInCreateLinkPresentationDropdown",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.gbp.GBPGroupManagementTest (895.170 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "validateAdminAccessGivesEditAccessTeamAdmin",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "validateAdminAccessGivesViewAccessOnlyOwnerDeckGroupAdmin",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "validateAdminAccessNotGivesAccessOtherGroupDecksWhenTeamAdminUser",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "validateChangingGroupPermissionLevels (239.672 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "validatePresentationAllowedUseEditAccessChangedWhileOnPage",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.admin.DeleteInternalFileViaUploadTest (37.554 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "testUrlGone (37.554 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.gbp.GBPFeatureRestrictionCopyPresentationSecondTest (396.180 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "restrictFeatureForGroupOnFeatureLevel (119.902 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "restrictFeatureForUserOnFeatureLevel (64.600 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "restrictFeatureGroupLevel (76.122 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "restrictFeatureOrgLevel (65.071 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "restrictFeatureUserLevel (70.485 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.pro.FeatureRestrictionTest (186.618 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "RestrictCustomBrandingWithSkus (30.239 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "RestrictCustomBrandingWithoutSkus (33.333 s)",
+                                    "icon": "jenkins/testerr.gif"
+                                },
+                                {
+                                    "name": "testSessionDurationRestrictionWithSkus (20.231 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "testSingleSignOnAtCSBlueWithSkus (54.842 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "testSingleSignOnAtCSRedWithSkus (47.973 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.plugins.outlook.CrmMessageTemplatesTest",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "testVerifyRecommendedForValueChangedInOnePlaceIsReflectedEverywhere",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testVerifyRecommendedForValueIfCustomerSetAsInternal",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testVerifyRecommendedForValueIfCustomerSetOnHomePage",
+                                    "icon": "jenkins/testignored.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.content.DragDropUploadTest",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "composeEmailPitchFromTray (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "createEmailPitchFromTray (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testLogout (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testLongFileName (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testNonAsciiFileName (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testRCUpload (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testSimpleUpload (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                },
+                                {
+                                    "name": "testUnsupportedFile (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.content.SlideDataTest",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "richContentSlideData (0.000 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.gbp.GBPLabFeatureTest",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "checkLastLoginOnUserListPage (0.001 s)",
+                                    "icon": "jenkins/testignored.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.api.rest.v1.live.ScheduleAPILiveTest",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "meetingScheduledViaGmailPluginSendsSingleInvite",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "meetingScheduledViaWebAPISendsInviteEmail",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "scheduleAPIAddProperFormat (8.021 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "scheduleAPIAddTest (8.128 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "testMeetingCardDoesNotShowLoopbackAddress",
+                                    "icon": "jenkins/testerr.gif"
+                                },
+                                {
+                                    "name": "testMeetingCardIsNotEditable (44.389 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "trackMeetingChangesFromPluginToWebSLP",
+                                    "icon": "jenkins/testerr.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.Utilities.db.CallDBFromSeleniumTest (32.607 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "verifyTeamNameFromWebsiteAndDB (11.051 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyUsernameFromWebsiteAndDB (10.740 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyViewerFromWebsiteAndDB (10.816 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.insights.GBPverifyUsersCanSeeEveryoneDataTest (0.000 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "verifyUsersCanSeeEveryoneData (112.991 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.insights.TeamPerformanceAdvancedOptionsTest (223.878 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "verifyAdvanceOptionForDisabledUsers (49.092 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyAdvanceOptionForFollowActivities (125.525 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyAdvanceOptionForIncludingInternalActivities",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.phoenix.home.MyClearslideKPITest (163.750 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "validateTotalCreateLinksBigNumber (43.582 s)",
+                                    "icon": "jenkins/testerr.gif"
+                                },
+                                {
+                                    "name": "validateTotalEmailsBigNumber (88.228 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "validateTotalMeetingsBigNumber (31.940 s)",
+                                    "icon": "jenkins/testerr.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.insights.CustomerInsightsFilterTest (570.682 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "verifyEmptyResults (125.147 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyFilterByCompany (81.611 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyFilterByGroups (101.829 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyFilterByGroupsAndUsers (179.940 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyFilterByUsers (82.155 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.myAccount.OutboundEmailSettingsTest (76.840 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "checkConfirmationAlertAppearAfterSendingSupportTicket",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "checkCreateSupportTicketAppearance (12.851 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "checkCreationOfSupportTicket (22.557 s)",
+                                    "icon": "jenkins/testerr.gif"
+                                },
+                                {
+                                    "name": "contactUsFeatureOnOutboundEmailSettingsPage",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "verifyUserEmailOnOutboundEmailSettingsPage",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.insights.GBPverifyGroupAdminCanSeeGroupRelatedDataTest (140.832 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "verifyGroupAdminCanSeeGroupRelatedData",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.RobotsTest (0.250 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "robotsTest (0.250 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.insights.MeetingRecapLinkTest (25.305 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "meetingRecapLink (25.305 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "com.clearslide.manage.crms.SalesForceConfigurationV1Test (1,267.013 s)",
+                            "icon": "jenkins/testok.gif",
+                            "children": [
+                                {
+                                    "name": "createNewContactsInSF (191.095 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "doNotCreateLeadsWithEmailPitchInSF (121.333 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "doNotCreateLeadsWithLivePitchInSF (186.986 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "doNotCreateNewContactsInSF (152.723 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "doNotLogEmailPitchTaskInSF (125.960 s)",
+                                    "icon": "jenkins/testerr.gif"
+                                },
+                                {
+                                    "name": "doNotLogLivePitchTaskInSF (144.499 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "logEmailPitchTaskInSF (131.536 s)",
+                                    "icon": "jenkins/testok.gif"
+                                },
+                                {
+                                    "name": "logLivePitchTaskInSF (212.881 s)",
+                                    "icon": "jenkins/testok.gif"
+                                }
+                            ]
+                        },
+                    ]
+                }
+            ];
+            zTreeObj = $.fn.zTree.init($("#tree-1"), setting, json);
+        });
+    </SCRIPT>
+</head>
+<body>
+<div id="tree-1" class="ztree"></div>
+</body>
+</html>
