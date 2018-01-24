@@ -6,15 +6,16 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+/**
+ * Scroll to button 50 and click on it.
+ * Just click on button 50.
+ * Also scroll moved entire DOM, but location of element is not changed as "viewport" is moved, i.e our look on page,
+ * but no elements in the page, that is why element's location is not changed.
+ */
 public class DragBelowTest extends BaseTest {
     @Test
     public void testBrokenScroll() {
         driver.get("file://" + absoluteFilePath("drag-below"));
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",
-            driver.findElement(By.xpath("//*[text()='Button 50']")));
-
-        driver.findElement(By.xpath("//*[text()='Button 50']")).click();
 
         Assertions.assertThat(driver.findElement(By.id("clicked")).getText())
             .isEqualTo("Button 50");
@@ -24,25 +25,7 @@ public class DragBelowTest extends BaseTest {
     public void testFixedScroll() {
         driver.get("file://" + absoluteFilePath("drag-below"));
 
-        scrollTo(By.id("news"), By.xpath("//*[text()='Button 200']"));
-        driver.findElement(By.xpath("//*[text()='Button 200']")).click();
-
         Assertions.assertThat(driver.findElement(By.id("clicked")).getText())
             .isEqualTo("Button 200");
-    }
-
-    private void scrollTo(By relativeLocator, By scrollToLocator) {
-        WebElement relative = driver.findElement(relativeLocator);
-        WebElement scrollTo = driver.findElement(scrollToLocator);
-
-        int extraOffset = 10;
-
-        ((JavascriptExecutor) driver).executeScript(
-            String.format("window.scrollBy(0, %d - %d - %d);",
-                scrollTo.getLocation().getY(),
-                relative.getSize().getHeight(),
-                extraOffset
-            )
-        );
     }
 }

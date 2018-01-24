@@ -10,6 +10,5 @@ public class MultilevelMenuTest extends BaseTest {
     @Test
     public void test() {
         driver.get("file://" + absoluteFilePath("multilevel-menu"));
-        System.out.println(1);
     }
 }
