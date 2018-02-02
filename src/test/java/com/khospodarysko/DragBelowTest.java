@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 /**
@@ -22,11 +23,16 @@ public class DragBelowTest extends BaseTest {
     }
 
     @Test
-    public void testFixedScroll() {
+    public void testFixedScroll_JS() {
         driver.get("file://" + absoluteFilePath("drag-below"));
 
         Assertions.assertThat(driver.findElement(By.id("clicked")).getText())
             .isEqualTo("Button 200");
+    }
+
+    @Test
+    public void testFixedScroll_Actions() {
+
     }
 
     @Test
@@ -40,5 +46,15 @@ public class DragBelowTest extends BaseTest {
         // scroll to 10
         // click
         // assert
+    }
+
+    @Test
+    public void test() {
+        driver.get("file://" + absoluteFilePath("drag-below"));
+
+        Actions move = new Actions(driver);
+        move.moveToElement(driver.findElement(By.xpath("//*[text()='Button 50']"))).perform();
+
+        System.out.println(1);
     }
 }
