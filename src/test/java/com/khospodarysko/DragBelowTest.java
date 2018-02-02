@@ -36,6 +36,11 @@ public class DragBelowTest extends BaseTest {
     }
 
     @Test
+    public void testFixedScroll_SlowMotions() {
+
+    }
+
+    @Test
     public void testMultipleScrolls() {
         driver.get("file://" + absoluteFilePath("drag-below"));
 
@@ -52,8 +57,13 @@ public class DragBelowTest extends BaseTest {
     public void test() {
         driver.get("file://" + absoluteFilePath("drag-below"));
 
+        WebElement element = driver.findElement(By.xpath("//*[text()='Button 50']"));
+
         Actions move = new Actions(driver);
-        move.moveToElement(driver.findElement(By.xpath("//*[text()='Button 50']"))).perform();
+        move.moveToElement(element).perform();
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scroll(0, 250);", element);
+
 
         System.out.println(1);
     }
