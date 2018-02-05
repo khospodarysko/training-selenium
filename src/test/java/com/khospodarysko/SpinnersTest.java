@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -23,6 +24,9 @@ public class SpinnersTest extends BaseTest {
         logger.info("{}",
         areSpinnersLoaded(driver, spinnerSmall));
         areSpinnersLoaded(driver, spinnerLarge);
+
+        Assert.assertTrue(isElementNotDisplayed(spinnerSmall), "Small spinners are disappeared");
+        Assert.assertTrue(isElementNotDisplayed(spinnerLarge), "Large spinners are disappeared");
     }
 
     /**
@@ -40,5 +44,9 @@ public class SpinnersTest extends BaseTest {
                 }
             }
         });
+    }
+
+    public boolean isElementNotDisplayed(WebElement element) {
+        return !element.isDisplayed();
     }
 }
