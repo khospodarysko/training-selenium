@@ -15,7 +15,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #333;
+            background-color: #4CAF50;
             position: fixed;
             top: 0;
             width: 100%;
@@ -34,11 +34,7 @@
         }
 
         li a:hover:not(.active) {
-            background-color: #111;
-        }
-
-        .active {
-            background-color: #4CAF50;
+            background-color: #0076fb;
         }
 
         button {
@@ -46,13 +42,22 @@
         }
 
         div.mybtn {
-           padding: 5px;
+            padding: 5px;
         }
     </style>
     <script>
+        function getRandomInt(min, max) {
+            var time = Math.floor(Math.random() * (max - min + 1)) + min;
+            console.log(time);
+            return time;
+        }
+
         $(document).ready(function () {
+            $('#menu').height(getRandomInt(50, 300));
+
             for (i = 1; i <= 200; i++) {
-                $("#content").append("<div class='mybtn'><button id='id-"+i+"' type='button' class='btn btn-primary'>Button "+i+"</button></div>");
+                $("#content")
+                    .append("<div class='mybtn'><button id='id-" + i + "' type='button' class='btn btn-primary'>Button " + i + "</button></div>");
             }
             $('.btn-primary').on('click', function (e) {
                 $('#clicked').text($(this).text());
@@ -61,8 +66,8 @@
     </script>
 </head>
 <body>
-<ul>
-    <li><a class="active" href="#home">Home</a></li>
+<ul id="menu">
+    <li><a href="#home">Home</a></li>
     <li><a href="#news" id="news">News</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#about">About</a></li>
