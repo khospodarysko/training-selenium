@@ -478,8 +478,16 @@
     <script>
         function timeClick() {
             let d = new Date();
-            let t = d.toLocaleTimeString();
-            document.getElementById("time").innerHTML = t;
+            document.getElementById("time").innerHTML = d.toLocaleString('en-US',
+                                                                         {
+                                                                             hour12: false,
+                                                                             year: "numeric",
+                                                                             month: "long",
+                                                                             day: "numeric",
+                                                                             hour: "numeric",
+                                                                             minute: "numeric",
+                                                                             second: "numeric"
+                                                                         });
         }
     </script>
 </head>
@@ -491,19 +499,19 @@
             Menu
         </label>
         <ul>
+            <li><a>Blog</a></li>
+            <li><a>About</a></li>
             <li>
                 <input id="link-gallery" type="checkbox">
-                <label class="right" for="link-gallery">Category</label>
+                <label class="right" for="link-gallery">Languages</label>
                 <ul>
                     <li><a>JavaScript</a></li>
-                    <li><a>Ruby</a></li>
                     <li><a>Python</a></li>
+                    <li><a>C#</a></li>
                     <li><a onclick="timeClick();">Time</a></li>
                     <li><a>C++</a></li>
                 </ul>
             </li>
-            <li><a>Blog</a></li>
-            <li><a>About</a></li>
             <li><a>Contact</a></li>
             <li><a id="time"></a></li>
         </ul>
