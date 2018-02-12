@@ -1,7 +1,8 @@
 package com.khospodarysko;
 
-import org.assertj.core.util.Compatibility;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -24,22 +25,38 @@ public class SpinnersTest extends BaseTest {
         List<WebElement> spinnerLarge = driver.findElements(By.cssSelector(".spinner-large"));
 
         logger.info("{}",
-        areSpinnersLoaded(driver, spinnerSmall, spinnerLarge));
+        SpinnerPage.waitUntilAllSpinnersHaveDisappeared(driver, spinnerSmall, spinnerLarge));
 
-        Assert.assertTrue(isElementNotDisplayed(spinnerSmall), "Small spinners are not disappeared");
-        Assert.assertTrue(isElementNotDisplayed(spinnerLarge), "Large spinners are not disappeared");
+        Assert.assertTrue(SpinnerPage.isElementNotDisplayed(spinnerSmall), "Small spinners are not disappeared");
+        Assert.assertTrue(SpinnerPage.isElementNotDisplayed(spinnerLarge), "Large spinners are not disappeared");
     }
 
     /**
      * @return true if all spinners have disappeared, false otherwise
      */
-    public boolean areSpinnersLoaded(WebDriver driver, List<WebElement> smallSpinner, List<WebElement> largeSpinner) {
+}
+
+class SpinnerPage {
+    protected WebDriver driver;
+
+    public SpinnerPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    @FindBy(css = ".spinner-small")
+    WebElement smallSpinner;
+
+    @FindBy(css = ".spinner-large")
+    WebElement largeSpinner;
+
+    public static boolean waitUntilAllSpinnersHaveDisappeared(WebDriver driver, List<WebElement> smallSpinner, List<WebElement> largeSpinner) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         return wait.until(new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {
                 try {
-                    return !(smallSpinner.isEmpty()) && !(largeSpinner.isEmpty());
+                    return (smallSpinner.isEmpty()) && (largeSpinner.isEmpty());
                 } catch (StaleElementReferenceException | NoSuchElementException ex) {
                     return true;
                 }
@@ -47,7 +64,8 @@ public class SpinnersTest extends BaseTest {
         });
     }
 
-    public boolean isElementNotDisplayed(List<WebElement> element) {
-        return !element.isEmpty();
+    public static boolean isElementNotDisplayed(List<WebElement> element) {
+        return element.isEmpty();
     }
 }
+

@@ -1,7 +1,7 @@
 package com.khospodarysko;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -21,12 +21,29 @@ public class ButtonTest extends BaseTest {
         } catch (Exception e) {
             // ignore
         }
+
         WebElement button = driver.findElement(By.cssSelector("button.hide"));
-        String butt = "";
-        while(!(butt.equals("Clicked 5"))) {
-            button.click();
-            butt = button.getText();
-        }
+
+        button.click();
+        button.click();
+        button.click();
+        button.click();
+        button.click();
+
         Assert.assertEquals(button.getText(), "Clicked 5");
+    }
+
+    public static Boolean waitElementUntilText(WebDriver driver, WebElement element, String text) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        return wait.until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                try {
+                    return element.getText().equals(text);
+                } catch (StaleElementReferenceException | NoSuchElementException ex) {
+                    return false;
+                }
+            }
+        });
     }
 }
