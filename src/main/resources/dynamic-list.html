@@ -23,11 +23,22 @@
             $.each(items, function(index, item) {
                 setTimeout(
                     function render() {
-                        $('div ul').append('<li><span>' + item + ' - test</span></li>');
+                        if (index === 2) {
+                            $('div ul').append('<li><span id="id'+index+'">' + item + ' - </span></li>');
+                        } else {
+                            $('div ul').append('<li><span id="id'+index+'">' + item + ' - test</span></li>');
+                        }
                     },
                     getRandomInt(1000, 5000)
                 );
             });
+
+            setTimeout(
+                function render() {
+                    $('#id2').text('2 - test');
+                },
+                10000
+            );
         }
 
         $(document).ready(function() {
@@ -39,7 +50,6 @@
 <div>
     <ul>
         <li>
-            <span></span>
         </li>
     </ul>
 </div>
