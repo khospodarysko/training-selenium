@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 public class HoverMenuTest extends BaseTest {
-    @Test(invocationCount = 5)
+    @Test(invocationCount = 1)
     public void testExpectedCondition() throws InterruptedException {
         driver.get("file://" + absoluteFilePath("hover-menu"));
         TimeUnit.SECONDS.sleep(2);

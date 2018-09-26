@@ -9,11 +9,15 @@ import java.util.stream.IntStream;
 
 /**
  * Click on button 5 times and assert that button's text is "Clicked 5"
+ * Cover:
+ * - implicit wait
+ * - explicit wait
+ * -
  */
 public class ButtonTest extends BaseTest {
     @Test
     public void testExpectedCondition() {
-        driver.get("file://" + absoluteFilePath("button"));
+        driver.get("file://" + absoluteFilePath("1. button"));
 
         new WebDriverWait(driver, 20).until(driver -> driver.findElement(By.tagName("button")).isDisplayed());
 

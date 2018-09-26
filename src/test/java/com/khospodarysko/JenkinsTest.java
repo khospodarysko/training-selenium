@@ -1,7 +1,5 @@
 package com.khospodarysko;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,10 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
-import javax.annotation.Nullable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 /**
  * Find only failed tests and print them along with the class they relate to.
@@ -25,13 +26,48 @@ public class JenkinsTest extends BaseTest {
 
     @BeforeMethod
     public void openSuite() {
-        // driver.get("file://" + absoluteFilePath("jenkins-small"));
-        driver.get("file://" + absoluteFilePath("jenkins"));
+        driver.get("file://" + absoluteFilePath("jenkins-small"));
+        // driver.get("file://" + absoluteFilePath("jenkins"));
 
         waiter = new WebDriverWait(driver, 10);
 
         waiter.until(elementToBeClickable(By.cssSelector(".button.level0.switch"))).click();
         waiter.until(sizeStable(By.cssSelector(".ztree")));
+    }
+
+    private Function<WebElement, String> trimTime = we -> {
+        String text = we.getText();
+        if (text.indexOf(" ") > 0) {
+            return text.substring(0, text.indexOf(" ")).trim();
+        }
+        return text.trim();
+    };
+
+    private Predicate<WebElement> isFailedIgnored = we ->
+        !we.findElements(By.cssSelector("span.button[style*='testerr'], span.button[style*='testignored']")).isEmpty();
+
+    private Predicate<WebElement> hasFailedIgnored = we ->
+        we.findElements(By.cssSelector("a.level2")).stream().anyMatch(isFailedIgnored);
+
+    @Test
+    public void testPrintFailedSkipped() {
+        List<WebElement> tests = driver.findElements(By.cssSelector("li.level1"));
+        Collections.reverse(tests);
+        tests.forEach(item -> item.findElement(By.cssSelector(".switch")).click());
+
+        waiter.until(sizeStable(tests.get(0)));
+
+        Collections.reverse(tests);
+        tests.stream()
+            .filter(hasFailedIgnored)
+            .forEach(item -> {
+                System.out.println(trimTime.apply(item.findElement(By.cssSelector("a.level1 .node_name"))));
+
+                item.findElements(By.cssSelector("a.level2")).stream()
+                    .filter(isFailedIgnored)
+                    .map(trimTime)
+                    .forEach(name -> System.out.println("\t" + name));
+            });
     }
 
     // 55 sec

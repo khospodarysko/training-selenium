@@ -1,5 +1,5 @@
 package com.khospodarysko;
 
 public class GroupChildItemTest {
-//    не памятаю що тут зробити, певно згенерувати мапу з елемета меню і його піделементів?
+//    погрупувати елеметни в мапу [menu1 <submenu1, submenu2, submenu3>, menu2 <submenu1, submenu2, submenu3>] map of lists
 }
