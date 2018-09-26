@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag Below</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #4CAF50;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #0076fb;
+        }
+
+        button {
+            width: 150px;
+        }
+
+        div.mybtn {
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function getRandomInt(min, max) {
+            var time = Math.floor(Math.random() * (max - min + 1)) + min;
+            console.log(time);
+            return time;
+        }
+
+        $(document).ready(function () {
+            $('#menu').height(getRandomInt(50, 300));
+
+            for (i = 1; i <= 200; i++) {
+                $("#content")
+                    .append("<div class='mybtn'><button id='id-" + i + "' type='button' class='btn btn-primary'>Button " + i + "</button></div>");
+            }
+            $('.btn-primary').on('click', function (e) {
+                $('#clicked').text($(this).text());
+            })
+        });
+    </script>
+</head>
+<body>
+<ul id="menu">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#news" id="news">News</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#clicked" id="clicked"></a></li>
+</ul>
+
+<div id="content" style="padding:20px;margin-top:30px;height:auto;">
+</div>
+</body>
+</html>
