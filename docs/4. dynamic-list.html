@@ -24,9 +24,9 @@
                 setTimeout(
                     function render() {
                         if (index === 2) {
-                            $('div ul').append('<li><span id="id'+index+'">' + item + ' - </span></li>');
+                            $('div ul').append('<li class="list-group-item"><span id="id'+index+'">' + item + ' - </span></li>');
                         } else {
-                            $('div ul').append('<li><span id="id'+index+'">' + item + ' - test</span></li>');
+                            $('div ul').append('<li class="list-group-item"><span id="id'+index+'">' + item + ' - test</span></li>');
                         }
                     },
                     getRandomInt(1000, 5000)
@@ -48,10 +48,7 @@
 </head>
 <body>
 <div>
-    <ul>
-        <li>
-        </li>
-    </ul>
+    <ul class="list-group"></ul>
 </div>
 </body>
 </html>

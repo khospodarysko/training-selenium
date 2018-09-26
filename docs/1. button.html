@@ -27,7 +27,7 @@ function clicked() {
 $(document).ready(function(){
 	setTimeout(
 		function add(){
-  			$("body").append("<button class='hide' onclick='clicked()'>Delayed Button</button>");
+  			$("body").append("<button type='button' class='btn btn-secondary hide' onclick='clicked()'>Delayed Button</button>");
   			$(".hide").hide();
 			setTimeout(
 				function show(){
