@@ -16,7 +16,7 @@ public class BaseTest {
 
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver-mac");
+        System.setProperty("webdriver.chrome.driver", "chromedriver-mac-2.43");
         driver = new ChromeDriver();
     }
 
